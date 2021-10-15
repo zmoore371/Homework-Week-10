@@ -1,4 +1,4 @@
-//generate html 
+const generateHTML = require("./lib/generateHTML");
 
 const Manager = require("./lib/manager");
 const Intern = require("./lib/intern");
@@ -6,8 +6,8 @@ const Engineer = require("./lib/engineer");
 
 const fs = require("fs");
 const inquirer = require("inquirer");
-const { data } = require("browserslist");
-const { getNodeSourceCodeLocation } = require("parse5/lib/tree-adapters/default");
+// const { data } = require("browserslist");
+// const { getNodeSourceCodeLocation } = require("parse5/lib/tree-adapters/default");
 
 const teamArray = [];
 
@@ -76,27 +76,6 @@ const addManager = () => {
         console.log(manager);
     })
 };
-
-const addAnother = () => {
-    return inquirer.prompt([
-        {
-            type: "confirm",
-            name: "confirmAdd",
-            message: "Would you like to add another Employee?",
-            default: false
-        }
-    ])
-    .then(data => {
-        if(data.confirmAdd === true) {
-            chooseRole();
-        } else {
-            console.log("No more employees to add")
-        }
-    
-    })
-}
-
-
 
 const chooseRole = () => {
 
@@ -264,6 +243,28 @@ chooseIntern = () => {
         console.log(teamArray)
         
         addAnother()
+    })
+}
+
+const addAnother = () => {
+    return inquirer.prompt([
+        {
+            type: "confirm",
+            name: "confirmAdd",
+            message: "Would you like to add another Employee?",
+            default: false
+        }
+    ])
+    .then(data => {
+        if(data.confirmAdd === true) {
+            chooseRole();
+        } else {
+            console.log("No more employees to add")
+        }
+    })
+    .then(teamArray => {
+        console.log("Hey Im here!")
+        return generateHTML(teamArray)
     })
 }
 
