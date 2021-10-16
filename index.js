@@ -6,8 +6,6 @@ const Engineer = require("./lib/engineer");
 
 const fs = require("fs");
 const inquirer = require("inquirer");
-// const { data } = require("browserslist");
-// const { getNodeSourceCodeLocation } = require("parse5/lib/tree-adapters/default");
 
 const teamArray = [];
 
@@ -74,11 +72,11 @@ const addManager = () => {
         
         teamArray.push(manager);
         console.log(manager);
+        addAnother();
     })
 };
 
 const chooseRole = () => {
-
     return inquirer.prompt([
         {
             type: "list",
@@ -260,13 +258,53 @@ const addAnother = () => {
             chooseRole();
         } else {
             console.log("No more employees to add")
+            return teamArray
         }
     })
     .then(teamArray => {
-        console.log("Hey Im here!")
         return generateHTML(teamArray)
     })
+    .then(pageHTML => {
+        return writeFile(pageHTML) 
+    })
+    .catch(err => {
+        console.log(err)
+    })
+    
 }
 
+
+const writeFile = data => {
+    fs.writeFile('./dist/index.html', data, err => {
+        if (err) {
+            console.log(err);
+            return;
+        } else {
+            console.log("Your team profile has been successfully created! Please check out the index.html")
+        }
+    })
+}; 
+
 addManager()
-    .then(addAnother)
+    // .then(addAnother)
+//     .then(chooseRole)
+//     .then(teamArray => {
+//         return generateHTML(teamArray)
+//     })
+//     .then(pageHTML => {
+//         return writeFile(pageHTML) 
+//     })
+//     .catch(err => {
+//         console.log(err)
+//     })
+    
+    
+// create = () => {
+//     teamArray => {
+//         return generateHTML(teamArray)
+//     }
+//     .then(pageHTML => {
+//         return writeFile(pageHTML) 
+//     })
+   
+// }
