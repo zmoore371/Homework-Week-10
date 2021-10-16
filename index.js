@@ -11,69 +11,69 @@ const teamArray = [];
 
 const addManager = () => {
     return inquirer.prompt([
-       {
-           type: "input",
-           name: "name",
-           message: "What is the name of the Manager?",
-           validate: nameInput => {
-               if(nameInput !== null) {
-                   return true;
-               } else {
-                   console.log("Field blank!")
-                   return false;
-               }
-           }
-        }, 
+        {
+            type: "input",
+            name: "name",
+            message: "What is the name of the Manager?",
+            validate: nameInput => {
+                if (nameInput !== null) {
+                    return true;
+                } else {
+                    console.log("Field blank!")
+                    return false;
+                }
+            }
+        },
         {
             type: "input",
             name: "id",
-            message: "Enter manager's ID number: " ,
+            message: "Enter manager's ID number: ",
             validate: nameInput => {
-                if(isNaN(nameInput)){
+                if (isNaN(nameInput)) {
                     console.log("Field must be a number.")
                     return false;
                 } else {
                     return true;
-                }
-            } 
-
-        }, 
-        {
-            type: "input",
-            name: "email",
-            message: "What is the managers Email?",
-            validate: email => {
-                if(email !== null) {
-                    return true;    
-                } else {
-                    console.log("Field cannot be blank!");
-                    return false; 
                 }
             }
 
         },
         {
             type: "input",
-            name: "officeNumber",  
-            message: "What is the manager's office number?",
-            validate: nameInput => {
-                if(isNaN(nameInput)) {
-                    console.log("Field must be a number.");
-                    return false; 
+            name: "email",
+            message: "What is the managers Email?",
+            validate: email => {
+                if (email !== null) {
+                    return true;
                 } else {
-                    return true; 
+                    console.log("Field cannot be blank!");
+                    return false;
                 }
             }
-        }   
+
+        },
+        {
+            type: "input",
+            name: "officeNumber",
+            message: "What is the manager's office number?",
+            validate: nameInput => {
+                if (isNaN(nameInput)) {
+                    console.log("Field must be a number.");
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        }
     ])
-    .then(managerInput => {
-        const {name, id, email, officeNumber} = managerInput    
-        const manager = new Manager (name, id, email, officeNumber);
-        
-        teamArray.push(manager);
-        console.log(manager);
-        addAnother();
-    })
+        .then(managerInput => {
+            const { name, id, email, officeNumber } = managerInput
+            const manager = new Manager(name, id, email, officeNumber);
+
+            teamArray.push(manager);
+            console.log(manager);
+            addAnother();
+        })
 };
 
 const chooseRole = () => {
@@ -81,20 +81,20 @@ const chooseRole = () => {
         {
             type: "list",
             name: "role",
-            message: "Please choose your employee's role", 
+            message: "Please choose your employee's role",
             choices: ["Engineer", "Intern"]
         }
     ])
-    .then(data => {
-        
-        let {role} = data
+        .then(data => {
 
-        if(role === "Engineer"){
-            chooseEngineer();
-        } else {
-            chooseIntern();
-        }
-    })
+            let { role } = data
+
+            if (role === "Engineer") {
+                return chooseEngineer();
+            } else {
+                return chooseIntern();
+            }
+        })
 }
 
 chooseEngineer = () => {
@@ -105,38 +105,38 @@ chooseEngineer = () => {
             name: "name",
             message: "What is the name of the Engineer?",
             validate: nameInput => {
-                if(nameInput !== null) {
+                if (nameInput !== null) {
                     return true;
                 } else {
                     console.log("Field cannot be blank!")
                     return false;
                 }
             }
-         }, 
-         {
-             type: "input",
-             name: "id",
-             message: "Enter Engineer's ID number: " ,
-             validate: nameInput => {
-                 if(isNaN(nameInput)){
-                     console.log("Field must be a number.")
-                     return false;
-                 } else {
-                     return true;
-                 }
-             } 
- 
-         },
-         {
+        },
+        {
+            type: "input",
+            name: "id",
+            message: "Enter Engineer's ID number: ",
+            validate: nameInput => {
+                if (isNaN(nameInput)) {
+                    console.log("Field must be a number.")
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+
+        },
+        {
             type: "input",
             name: "email",
             message: "What is the Engineer's Email?",
             validate: email => {
-                if(email !== null) {
-                    return true;    
+                if (email !== null) {
+                    return true;
                 } else {
                     console.log("Field cannot be blank!");
-                    return false; 
+                    return false;
                 }
             }
 
@@ -145,29 +145,29 @@ chooseEngineer = () => {
             name: "github",
             message: "What is the Engineer's Github username?",
             validate: email => {
-                if(email !== null) {
-                    return true;    
+                if (email !== null) {
+                    return true;
                 } else {
                     console.log("Field cannot be blank!");
-                    return false; 
+                    return false;
                 }
             }
 
         },
     ])
-    .then(engineerInfo => {
-        let {name, id, email, github} = engineerInfo;
+        .then(engineerInfo => {
+            let { name, id, email, github } = engineerInfo;
 
-        employee = new Engineer(name, id, email, github)
-        
-        console.log(employee)
-        
-        teamArray.push(employee)
+            employee = new Engineer(name, id, email, github)
 
-        console.log(teamArray)
-        
-        addAnother()
-    })
+            console.log(employee)
+
+            teamArray.push(employee)
+
+            console.log(teamArray)
+
+            return addAnother()
+        })
 
 }
 
@@ -179,38 +179,38 @@ chooseIntern = () => {
             name: "name",
             message: "What is the name of the Intern?",
             validate: nameInput => {
-                if(nameInput !== null) {
+                if (nameInput !== null) {
                     return true;
                 } else {
                     console.log("Field cannot be blank!")
                     return false;
                 }
             }
-         }, 
-         {
-             type: "input",
-             name: "id",
-             message: "Enter Intern's ID number: " ,
-             validate: nameInput => {
-                 if(isNaN(nameInput)){
-                     console.log("Field must be a number.")
-                     return false;
-                 } else {
-                     return true;
-                 }
-             } 
- 
-         },
-         {
+        },
+        {
+            type: "input",
+            name: "id",
+            message: "Enter Intern's ID number: ",
+            validate: nameInput => {
+                if (isNaN(nameInput)) {
+                    console.log("Field must be a number.")
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+
+        },
+        {
             type: "input",
             name: "email",
             message: "What is the Intern's Email?",
             validate: email => {
-                if(email !== null) {
-                    return true;    
+                if (email !== null) {
+                    return true;
                 } else {
                     console.log("Field cannot be blank!");
-                    return false; 
+                    return false;
                 }
             }
 
@@ -219,29 +219,29 @@ chooseIntern = () => {
             name: "school",
             message: "What school is the Intern attending?",
             validate: email => {
-                if(email !== null) {
-                    return true;    
+                if (email !== null) {
+                    return true;
                 } else {
                     console.log("Field cannot be blank!");
-                    return false; 
+                    return false;
                 }
             }
 
         },
     ])
-    .then(internInfo => {
-        let {name, id, email, school} = internInfo;
+        .then(internInfo => {
+            let { name, id, email, school } = internInfo;
 
-        employee = new Intern(name, id, email, school)
-        
-        console.log(employee)
-        
-        teamArray.push(employee)
-        
-        console.log(teamArray)
-        
-        addAnother()
-    })
+            employee = new Intern(name, id, email, school)
+
+            console.log(employee)
+
+            teamArray.push(employee)
+
+            console.log(teamArray)
+
+            return addAnother()
+        })
 }
 
 const addAnother = () => {
@@ -253,28 +253,29 @@ const addAnother = () => {
             default: false
         }
     ])
-    .then(data => {
-        if(data.confirmAdd === true) {
-            chooseRole();
-        } else {
-            console.log("No more employees to add")
-            return teamArray
-        }
-    })
-    .then(teamArray => {
-        return generateHTML(teamArray)
-    })
-    .then(pageHTML => {
-        return writeFile(pageHTML) 
-    })
-    .catch(err => {
-        console.log(err)
-    })
-    
+        .then(data => {
+            if (data.confirmAdd === true) {
+                return chooseRole();
+            } else {
+                console.log("No more employees to add")
+                return teamArray
+            }
+        })
+        .then(teamArray => {
+            return generateHTML(teamArray)
+        })
+        .then(pageHTML => {
+            return writeFile(pageHTML)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+
 }
 
 
 const writeFile = data => {
+    if(data !== undefined) {
     fs.writeFile('./dist/index.html', data, err => {
         if (err) {
             console.log(err);
@@ -282,29 +283,7 @@ const writeFile = data => {
         } else {
             console.log("Your team profile has been successfully created! Please check out the index.html")
         }
-    })
-}; 
+    })}
+};
 
 addManager()
-    // .then(addAnother)
-//     .then(chooseRole)
-//     .then(teamArray => {
-//         return generateHTML(teamArray)
-//     })
-//     .then(pageHTML => {
-//         return writeFile(pageHTML) 
-//     })
-//     .catch(err => {
-//         console.log(err)
-//     })
-    
-    
-// create = () => {
-//     teamArray => {
-//         return generateHTML(teamArray)
-//     }
-//     .then(pageHTML => {
-//         return writeFile(pageHTML) 
-//     })
-   
-// }
