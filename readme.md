@@ -20,6 +20,7 @@
    
    ## Usage
    To quickly generate HTML with relevant information.
+   https://user-images.githubusercontent.com/87740245/137602202-df7ba300-4568-4e3c-b12b-13a924755e44.mp4
    
    ## License
    [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -38,3 +39,6 @@
    Link to Github: [zmoore371](https://github.com/zmoore371)<br />
    <br />
    Email me with any questions: zmoore371@gmail.com<br /><br />
+
+https://user-images.githubusercontent.com/87740245/137602202-df7ba300-4568-4e3c-b12b-13a924755e44.mp4
+
